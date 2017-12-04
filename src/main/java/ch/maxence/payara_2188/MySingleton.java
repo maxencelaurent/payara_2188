@@ -1,12 +1,10 @@
 package ch.maxence.payara_2188;
 
-import javax.ejb.Singleton;
-
 /**
  *
  * @author maxence
  */
-@Singleton
+//@Singleton
 public class MySingleton {
 
     public String sayHello() {
