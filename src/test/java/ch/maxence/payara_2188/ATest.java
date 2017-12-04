@@ -24,12 +24,12 @@ public class ATest {
 
         Map<String, Object> properties = new HashMap<>();
 
-        properties.put(EJBContainer.MODULES, new File("src/main/resource/embed-classes"));
+        properties.put(EJBContainer.MODULES, new File("src/main/resources/embed-classes"));
 
         EJBContainer container = EJBContainer.createEJBContainer(properties);
 
         try {
-            MySingleton lookup = (MySingleton) container.getContext().lookup("java:global/classes/MySingleton!" + MySingleton.class.getName());
+            MySingleton lookup = (MySingleton) container.getContext().lookup("java:global/embed-classes/MySingleton!" + MySingleton.class.getName());
             String sayHello = lookup.sayHello();
             Assert.assertNotNull("Not saying hello :-(", sayHello);
         } catch (NamingException ex) {
