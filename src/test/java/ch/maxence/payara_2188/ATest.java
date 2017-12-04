@@ -29,7 +29,7 @@ public class ATest {
         EJBContainer container = EJBContainer.createEJBContainer(properties);
 
         try {
-            MySingleton lookup = (MySingleton) container.getContext().lookup("java:global/embed-classes/MySingleton!" + MySingleton.class.getName());
+            MySingleton lookup = (MySingleton) container.getContext().lookup("java:global/classes/MySingleton!" + MySingleton.class.getName());
             String sayHello = lookup.sayHello();
             Assert.assertNotNull("Not saying hello :-(", sayHello);
         } catch (NamingException ex) {
@@ -37,15 +37,4 @@ public class ATest {
         }
 
     }
-
-    @Test
-    public void ls() {
-        File file = new File("target/embed-classes");
-        String[] list = file.list();
-
-        for (String filename : list) {
-            System.out.println("Coucou: " + filename);
-        }
-    }
-
 }
