@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.NamingException;
-import org.eclipse.persistence.jpa.jpql.Assert;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -31,7 +31,7 @@ public class ATest {
         try {
             MySingleton lookup = (MySingleton) container.getContext().lookup("java:global/embed-classes/MySingleton!" + MySingleton.class.getName());
             String sayHello = lookup.sayHello();
-            Assert.isNotNull("Not saying hello :-(", sayHello);
+            Assert.assertNotNull("Not saying hello :-(", sayHello);
         } catch (NamingException ex) {
             Assert.fail("MySingleton has not been loaded...");
         }
