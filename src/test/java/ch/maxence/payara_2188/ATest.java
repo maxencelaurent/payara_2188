@@ -24,7 +24,7 @@ public class ATest {
 
         Map<String, Object> properties = new HashMap<>();
 
-        properties.put(EJBContainer.MODULES, new File("target/embed-classes"));
+        properties.put(EJBContainer.MODULES, new File("src/main/resource/embed-classes"));
 
         EJBContainer container = EJBContainer.createEJBContainer(properties);
 
@@ -36,6 +36,16 @@ public class ATest {
             Assert.fail("MySingleton has not been loaded...");
         }
 
+    }
+
+    @Test
+    public void ls() {
+        File file = new File("target/embed-classes");
+        String[] list = file.list();
+
+        for (String filename : list) {
+            System.out.println("Coucou: " + filename);
+        }
     }
 
 }
