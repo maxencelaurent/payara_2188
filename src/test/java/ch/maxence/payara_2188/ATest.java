@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.NamingException;
-import org.eclipse.persistence.jpa.jpql.Assert;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -24,18 +24,28 @@ public class ATest {
 
         Map<String, Object> properties = new HashMap<>();
 
-        properties.put(EJBContainer.MODULES, new File("target/embed-classes"));
+        properties.put(EJBContainer.MODULES, new File("src/main/resource/embed-classes"));
 
         EJBContainer container = EJBContainer.createEJBContainer(properties);
 
         try {
             MySingleton lookup = (MySingleton) container.getContext().lookup("java:global/embed-classes/MySingleton!" + MySingleton.class.getName());
             String sayHello = lookup.sayHello();
-            Assert.isNotNull("Not saying hello :-(", sayHello);
+            Assert.assertNotNull("Not saying hello :-(", sayHello);
         } catch (NamingException ex) {
             Assert.fail("MySingleton has not been loaded...");
         }
 
+    }
+
+    @Test
+    public void ls() {
+        File file = new File("target/embed-classes");
+        String[] list = file.list();
+
+        for (String filename : list) {
+            System.out.println("Coucou: " + filename);
+        }
     }
 
 }
